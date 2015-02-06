@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<span class="glyphicon glyphicon-share pull-left"></span>
+		<h3 class="panel-title">Share {{wallet}}</h3>
+		<button type="submit" class="btn btn-xs btn-danger pull-right" ng-click="cancel()" ng-hide="$parent.address"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+	</div>
+	<div class="panel-body">
+	  <div class="container-fluid col-md-12">
+		  <div class="row">
+		    <div class="col-md-3"><a class="btn btn-primary" href="#" socialshare socialshare-provider="reddit" socialshare-popup-width="840" socialshare-popup-height="900" socialshare-text="{{wallet}}" socialshare-url="{{shortLink}}" analytics-on="click" analytics-event="Reddit Share" analytics-category="Commands"><i class="fa fa-reddit"></i> Reddit</a></div>
+		  	<div class="col-md-3"><a class="btn btn-primary" href="#" socialshare socialshare-provider="twitter" socialshare-hashtags="reddcoin, rddrocks" socialshare-text="{{wallet}}" socialshare-url="{{shortLink}}" analytics-on="click" analytics-event="Twitter Share" analytics-category="Commands"><i class="fa fa-twitter"></i> Twitter</a></div>
+		  	<div class="col-md-3"><a class="btn btn-primary" href="#" socialshare socialshare-provider="facebook" socialshare-text="{{wallet}}" socialshare-url="{{shortLink}}" analytics-on="click" analytics-event="Facebook Share" analytics-category="Commands"><i class="fa fa-facebook"></i> Facebook</a></div>
+		  	<div class="col-md-3"><a class="btn btn-primary" href="#" socialshare socialshare-provider="google+" socialshare-text="{{wallet}}" socialshare-url="{{shortLink}}" analytics-on="click" analytics-event="Google Share" analytics-category="Commands"><i class="fa fa-google-plus"></i> Google+</a></div>
+		  </div>
+		  <div class="row">
+		  	<div class="input-group input-group-sm" ng-hide="address">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></span>
+                <input type="text" class="form-control" value="{{shortLink}}" readonly select-on-click>
+             </div>
+		  </div>
+		  <div class="row">
+		  	<qrcode class="center" data="{{shortLink}}" size="150"></qrcode>
+		  </div>
+	  </div>
+	</div>
+</div>
+
+
+
+
+
+
+

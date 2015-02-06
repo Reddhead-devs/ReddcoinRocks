@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" ng-app="reddcoinRocks"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" ng-app="reddcoinRocks"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" ng-app="reddcoinRocks"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" ng-app="reddcoinRocks"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Reddcoin Rocks!</title>
+        <link rel="shortcut icon" href="favicon.png" />
+        <meta name="reddcoin:address" content="RocksEB642vbQ3a5r7HTBjk9P7fmQ1WCTC">
+
+        <meta property="og:site_name" content="Reddcoin Rocks!"/>
+        <meta property="og:url" content="http://reddcoin.rocks" />
+        <meta property="og:image" content="http://reddcoin.rocks/icon.png">
+        <meta property="og:description" content="Keep track of your stake rewards - anytime, anywhere on any device!">
+
+        <meta name="description" content="Keep track of your stake rewards - anytime, anywhere on any device!">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png"/>
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+
+        <meta name='application-name' content='Reddcoin Rocks!' />
+        <meta name='msapplication-TileColor' content='#222222' />
+        <meta name='msapplication-TileImage' content='http://reddcoin.rocks/icon.png' />
+        <meta name='msapplication-starturl' content='http//reddcoin.rocks' />
+
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/ngActivityIndicator.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+    </head>
+    <body ng-cloak ng-controller="stakingInfo">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" ng-hide="address" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <img alt="Reddcoin Rocks!" src="rr_logo_small.png">
+          </a>
+          <ul class="navbar-nav">
+            <li>
+              <p ng-show="btcPrice"><span class="label" ng-class="{'label-success': btcPriceUp, 'label-danger': !btcPriceUp}" title="bitstamp btc/usd price">BTC: ${{btcPrice | humanize:2:'.':','}} <span class="glyphicon" ng-class="{'glyphicon-arrow-up': btcPriceUp, 'glyphicon-arrow-down': !btcPriceUp}" aria-hidden="true"></span></span></p>
+              <p ng-show="rddPrice"><span class="label" ng-class="{'label-success': rddPriceUp, 'label-danger': !rddPriceUp}" title="cryptsy rdd/btc price">RDD: ฿{{rddPrice | humanize:8:'.':','}} <span class="glyphicon" ng-class="{'glyphicon-arrow-up': rddPriceUp, 'glyphicon-arrow-down': !rddPriceUp}" aria-hidden="true"></span></span></p>
+              <p ng-show="rddDollarPrice"><span class="label" ng-class="{'label-success': rddDollarPriceUp, 'label-danger': !rddDollarPriceUp}" title="bitstamp btc * cryptsy rdd price">RDD: ${{rddDollarPrice | humanize:8:'.':','}} <span class="glyphicon" ng-class="{'glyphicon-arrow-up': rddDollarPriceUp, 'glyphicon-arrow-down': !rddDollarPriceUp}" aria-hidden="true"></span></span></p>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <div class="input-group input-group-sm" ng-hide="address">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></span>
+                <input type="text" placeholder="Reddcoin address" class="form-control" ng-model="wallet">
+                <span class="input-group-btn">
+                  <button type="submit" class="btn btn-sm btn-success" ng-click="getBalance()" analytics-on="click" analytics-event="Add Address" analytics-category="Commands"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                </span>
+              </div>
+            </div>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+    <div class="container fill">
+      <div class="row fill vertical-align" ng-hide="wallets.length && !AILoading">
+        <div class="col-xs-12 text-center">
+          <div>
+            <p><img src="rr_logo_bow.png" class="img-responsive" alt="Reddcoin Rocks!"></p>
+            <h2>Keep track of your stake rewards<br /><small>anytime, anywhere on any device</small></h2>
+            <div ng-activity-indicator="DottedDark" style="display: inline-block;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row" ng-repeat="wallet in wallets" ng-controller="walletData" ng-hide="AILoading">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <a href="#" ng-click="$event.preventDefault(); this.blur(); openShareLayer('md')" title="Share this address" ng-if="!$parent.address" class="pull-left" analytics-on="click" analytics-event="Share Address" analytics-category="Commands">
+                <span class="glyphicon glyphicon-share" ng-hide="shorteningUrl"></span>
+                <i class="fa fa-circle-o-notch fa-spin" ng-show="shorteningUrl"></i>
+              </a>
+              <h3 class="panel-title">{{wallet}}</h3>
+              <button analytics-on="click" analytics-event="Remove Address" analytics-category="Commands" type="submit" class="btn btn-xs btn-danger pull-right" ng-click="removeWallet()" ng-hide="$parent.address"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            </div>
+            <div class="panel-body">
+              <dl class="dl-horizontal">
+                <dt>Balance</dt>
+                <dd>Ɍ{{balance | humanize:2:'.':','}}</dd>
+                <dt>USD Value</dt>
+                <dd>${{balance * rddDollarPrice | humanize:2:'.':','}}</dd>
+                <dt>BTC Value</dt>
+                <dd>฿{{balance * rddPrice | humanize:8:'.':','}}</dd>
+                <dt ng-show="avgStakeTimespan">Avg. time until stake</dt>
+                <dd ng-show="avgStakeTimespan" compile="avgStakeTimespan"></dd>
+                <dt ng-show="lastReward">Last reward</dt>
+                <dd ng-show="lastReward" compile="lastReward"></dd>
+                <dt ng-show="avgPercentage">Progress</dt>
+                <dd ng-show="avgPercentage" compile="avgPercentage"></dd>
+                <dt>Next refresh in</dt>
+                <dd compile="estStakeTimespan"></dd>
+              </dl>
+              <div class="table-responsive" ng-hide="!!!transactions && !!!transactions.length">
+                <table class="table table-condensed table-striped">
+                  <caption>Latest stake rewards ({{filteredTransactions.length}} out of {{transactions.length}} transactions):</caption>
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Stake Reward</th>
+                      <th>BTC Value</th>
+                      <th>USD Value</th>
+                      <th>Confirmations</th>
+                    </tr>
+                  </thead>
+                  <tfoot ng-show="totalStakeTime">
+                    <tr compile="totalStakeTime" class="bold"></tr>
+                  </tfoot>
+                  <tbody>
+                    <tr ng-repeat="tx in filteredTransactions = (transactions | filter:isStakeTransactionFilter() | limitTo:10 | orderBy:time:true | orderBy:time:true)" ng-class="{'danger': (tx.confirmations == 0)}">
+                      <td>{{tx.time * 1000 | date:'medium'}}</td>
+                      <td>Ɍ{{tx.fees * -1 | humanize:8:'.':','}}</td>
+                      <td>฿{{(tx.fees * -1) * $parent.$parent.rddPrice | humanize:8:'.':','}}</td>
+                      <td>${{(tx.fees * -1) * $parent.$parent.rddDollarPrice | humanize:8:'.':','}}</td>
+                      <td>{{tx.confirmations}}</td>
+                    </tr>
+                    <tr ng-if="!filteredTransactions.length" class="info"><td colspan="5">No stake rewards within last 10 transactions</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <a href="http://live.reddcoin.com/address/{{wallet}}" ng-click="newTransactions = 0" target="_blank" class="btn btn-info btn-xs" analytics-on="click" analytics-event="View All Transactions" analytics-category="Commands"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> View all transactions <span class="badge" ng-show="newTransactions">{{newTransactions}}</span></a>
+              <!-- <button ng-click="updateWallet(this)" class="btn btn-default btn-xs" analytics-on="click" analytics-event="Manual Refresh" analytics-category="Commands"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh manually</button> -->
+              <button analytics-on="click" analytics-event="Enable Audio Notification" ng-show="$parent.canPlayAudioNotifications" analytics-category="Commands" type="submit" class="btn btn-xs btn-default pull-right" ng-click="toggleAudio()"><span class="glyphicon" ng-class="{'glyphicon-volume-off': !audioActive, 'glyphicon-volume-up': audioActive }" aria-hidden="true"></span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <span class="label label-default">Donations: <a href="http://reddcoin.rocks/#RocksEB642vbQ3a5r7HTBjk9P7fmQ1WCTC" target="_blank" analytics-on="click" analytics-event="Donation Link" analytics-category="Commands">RocksEB642vbQ3a5r7HTBjk9P7fmQ1WCTC</a></span>
+      <span class="label label-default"><a href="https://twitter.com/ReddcoinRocks" target="_blank" analytics-on="click" analytics-event="Twitter Link" analytics-category="Commands"><i class="fa fa-twitter"></i></a></span>
+    </footer>
+     <!-- /container -->        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+
+        <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular-animate.min.js"></script>
+
+        <script src="js/vendor/ui-bootstrap-tpls-0.12.0.min.js"></script>
+
+        <script src="js/vendor/desktop-notify-min.js"></script>
+        <script src="js/vendor/angular-cookie.min.js"></script>
+        <script src="js/vendor/ngActivityIndicator.min.js"></script>
+        <script src="js/vendor/angular-socialshare.js"></script>
+        <script src="js/vendor/timer.js"></script>
+        <script src="http://monospaced.github.io/bower-qrcode-generator/js/qrcode.js"></script>
+        <script src="js/vendor/qrcode.js"></script>
+        <script src="js/vendor/angulartics.js"></script>
+        <script src="js/vendor/angulartics-ga.js"></script>
+
+        <!-- pusher-js -->
+        <script src="http://js.pusher.com/2.2/pusher.min.js"></script>
+
+        <!-- pusher-angular -->
+        <script src="http://cdn.jsdelivr.net/angular.pusher/latest/pusher-angular.min.js"></script>
+
+        <script src="http://live.reddcoin.com/socket.io/socket.io.js"></script>
+
+        <script src="js/plugins.js"></script>
+        <script src="js/main.min.js"></script>
+
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='http://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-57017621-1','auto');
+        </script>
+    </body>
+</html>

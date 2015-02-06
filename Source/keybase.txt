@@ -1,0 +1,67 @@
+==================================================================
+https://keybase.io/reddcoinrocks
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://reddcoin.rocks
+  * I am reddcoinrocks (https://keybase.io/reddcoinrocks) on keybase.
+  * I have a public key with fingerprint F096 39FD 3A6A C0CA 8FC6  C2C5 0A78 29AC 8877 21A2
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "f09639fd3a6ac0ca8fc6c2c50a7829ac887721a2",
+            "host": "keybase.io",
+            "key_id": "0a7829ac887721a2",
+            "kid": "010116030ec016d4d9e196733778a35aeb4e8be540214b4722b05d2c9d4b3e1f1edb0a",
+            "uid": "9ecd2c48fd869e75334423a030069800",
+            "username": "reddcoinrocks"
+        },
+        "service": {
+            "hostname": "reddcoin.rocks",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1420401140,
+    "expire_in": 157680000,
+    "prev": "a1442cf10c1b5783f063f56fef5b9f7c6dc3865cef8e7d449e9b2d4e3f6049b2",
+    "seqno": 2,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.1
+Comment: https://keybase.io/crypto
+
+yMIeAnicbZJdSBVBFMevWuq9In1Z+iAJK4GZyez37i0No4ioHgL7MLvI7Mysburd
+696rKaKVUGKSQh+WUkIpmJJKCRWllmGWitaLkVmQ+mBZBMGNejBqVuslepqZ8/+f
+35xzOIPRYQ5XCGmLd4TWlM6EjA7sKnZktjcGyxnNxGWMu5zJJ4uHbnhzieWzDG+A
+cTM6UCVe1TEPJYgAgoqOJMQhEUBZ4VSIFEWWORZyTAqTZ/rtDIrRoJ+kGiaN0UeO
+gWn0P/78JYEFLCsBHhAEWAkLWCWsKsk8L8sK5EVINIEoGhEFwLGCJsgcpwERc0jF
+gsYTVmcJ1gCkuOJFnEoQFQVFx4qkElnkeUHgeEj5QFIVAGyjn1heWEio2yIYI9Pw
+WibK9zMVKQyVSgxE7DnY7fxjS13ypTA+ywyYyCygWl4g4HPbqYEyn+09TrScP5Qc
+zfBiOk2aUEIsv2F6GTdLnShg2FhW4IBAmxdACkNKfYZFcgzbIcoSLRQA+xtSQpGQ
+pT0gnQWI1URZ4XUg8boo6UQXNVWXkYQRr0giIrpCZCwIKlE1DguE1yUg0Ctj91Xk
+NRk3R8uEuRTpN3K9MFBsEabiyeOjyxwhLkf48lB7Hxwu58q/W7LpRMRC5MOqd765
+Gnemc2bCs2oy+lFCW/ere+NadtiFmeCVz53R3za/rZ6tffqxryGrIPZNVOJMe9L+
+kZgdwy8mgx0XYwZcTEW96BzZuHr2Ruvh5HWJzQvjjbf2ft/S3D12c6olZMGTNj96
+92Xs+4aMztnng6fm4pPuVxYWXro9tPNk1Ng27We9erU1M2mu49fQl9QP4wVs13Bt
+X83p8Nfnr4X3nsuKwVsz5PJPyWvq6vKim8x942fbItsPBbd3bLgjpbf3lEWkgaY9
+819XXF5/UMct03H9XFXWBB6L9KztiT9yrF/seuB8pnR1HJiCZxau5xV4ql1xniKY
+nXC9d1qv3l3J/0j/DdYaLMQ=
+=FQor
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/reddcoinrocks
+
+==================================================================
