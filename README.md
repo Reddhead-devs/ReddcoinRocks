@@ -10,7 +10,7 @@ If you want to support the hosting of reddcoin.rocks you can send reddcoins to R
 
 Steffen (ReddcoinRocks)
 
-
+---
 The MIT License (MIT)
 
 Copyright (c) 2015 Steffen Kolmer
