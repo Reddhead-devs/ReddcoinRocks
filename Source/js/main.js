@@ -96,7 +96,7 @@ reddcoinRocks.service('rddShortUrlService', ['$http', function($http) {
 		    params: {
 		    	callback: "JSON_CALLBACK",
 		    	username: "reddcoinrocks",
-		    	password: "Hs8H8ehU",
+		    	password: "password",
 		    	action:   "shorturl",
 		    	format:   "jsonp",
 		    	title:    "Reddcoin Rocks!",
