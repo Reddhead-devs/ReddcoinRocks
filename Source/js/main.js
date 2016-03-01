@@ -59,7 +59,7 @@ reddcoinRocks.directive('compile', ['$compile', function ($compile) {
 reddcoinRocks.service('rddPriceService', ['$http', function($http) {
 	this.getPrice = function() {
 		return $http({
-			url: 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20json%20where%20url%3D%22' + encodeURIComponent('http://pubapi.cryptsy.com/api.php?method=singlemarketdata&marketid=169') + '%22&format=json'
+			url: 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20json%20where%20url%3D%22' + encodeURIComponent('https://bittrex.com/api/v1.1/public/getticker?market=BTC-RDD') + '%22&format=json'
 		});
 	};
 }]);
@@ -503,8 +503,8 @@ reddcoinRocks.controller('stakingInfo', ['$scope', '$http', 'btcPriceService', '
 	});
 
 	rddPriceService.getPrice().then(function(result) {
-		if (result.data.query.results && result.data.query.results.json.success == 1 && result.data.query.results.json['return']['markets']['RDD']['lasttradeprice']) {
-			$scope.rddPrice = result.data.query.results.json['return']['markets']['RDD']['lasttradeprice'];
+		if (result.data.query.results && result.data.query.results.json.success == "true" && result.data.query.results.json['result']['Last']) {
+			$scope.rddPrice = result.data.query.results.json['result']['Last'];
 			$scope.updateRddDollarPrice($scope.btcPrice, $scope.rddPrice);
 		}
 	});

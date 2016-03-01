@@ -56,8 +56,8 @@
           <ul class="navbar-nav">
             <li>
               <p ng-show="btcPrice"><span class="label" ng-class="{'label-success': btcPriceUp, 'label-danger': !btcPriceUp}" title="bitstamp btc/usd price">BTC: ${{btcPrice | humanize:2:'.':','}} <span class="glyphicon" ng-class="{'glyphicon-arrow-up': btcPriceUp, 'glyphicon-arrow-down': !btcPriceUp}" aria-hidden="true"></span></span></p>
-              <p ng-show="rddPrice"><span class="label" ng-class="{'label-success': rddPriceUp, 'label-danger': !rddPriceUp}" title="cryptsy rdd/btc price">RDD: ฿{{rddPrice | humanize:8:'.':','}} <span class="glyphicon" ng-class="{'glyphicon-arrow-up': rddPriceUp, 'glyphicon-arrow-down': !rddPriceUp}" aria-hidden="true"></span></span></p>
-              <p ng-show="rddDollarPrice"><span class="label" ng-class="{'label-success': rddDollarPriceUp, 'label-danger': !rddDollarPriceUp}" title="bitstamp btc * cryptsy rdd price">RDD: ${{rddDollarPrice | humanize:8:'.':','}} <span class="glyphicon" ng-class="{'glyphicon-arrow-up': rddDollarPriceUp, 'glyphicon-arrow-down': !rddDollarPriceUp}" aria-hidden="true"></span></span></p>
+              <p ng-show="rddPrice"><span class="label" ng-class="{'label-success': rddPriceUp, 'label-danger': !rddPriceUp}" title="bittrex rdd/btc price">RDD: ฿{{rddPrice | humanize:8:'.':','}} <span class="glyphicon" ng-class="{'glyphicon-arrow-up': rddPriceUp, 'glyphicon-arrow-down': !rddPriceUp}" aria-hidden="true"></span></span></p>
+              <p ng-show="rddDollarPrice"><span class="label" ng-class="{'label-success': rddDollarPriceUp, 'label-danger': !rddDollarPriceUp}" title="bitstamp btc * bittrex rdd price">RDD: ${{rddDollarPrice | humanize:8:'.':','}} <span class="glyphicon" ng-class="{'glyphicon-arrow-up': rddDollarPriceUp, 'glyphicon-arrow-down': !rddDollarPriceUp}" aria-hidden="true"></span></span></p>
             </li>
           </ul>
         </div>
